@@ -6,6 +6,7 @@ class VrtcalTapjoyAdaptersWrapper: NSObject, AdapterWrapperProtocol {
     
     var appLogger: Logger
     var sdkEventsLogger: Logger
+    var sdk = SDK.tapjoy
     var delegate: AdapterWrapperDelegate
     var tjPlacement: TJPlacement?
     
@@ -20,7 +21,6 @@ class VrtcalTapjoyAdaptersWrapper: NSObject, AdapterWrapperProtocol {
     }
     
     func initializeSdk() {
-        appLogger.log()
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(tjcConnectSuccess(notif:)),
@@ -76,15 +76,19 @@ class VrtcalTapjoyAdaptersWrapper: NSObject, AdapterWrapperProtocol {
         
         return false
     }
+    
+    func destroyInterstitial() {
+        tjPlacement = nil
+    }
 }
 
 extension VrtcalTapjoyAdaptersWrapper {
     @objc func tjcConnectSuccess(notif: NSNotification) {
-        appLogger.log()
+        sdkEventsLogger.log("Tapjoy initialized")
     }
 
     @objc func tjcConnectFail(notif: NSNotification) {
-        appLogger.log()
+        sdkEventsLogger.log("Tapjoy initializzation failed")
     }
 }
 
