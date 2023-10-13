@@ -36,6 +36,13 @@ class VrtcalTapjoyAdaptersWrapper: NSObject, AdapterWrapperProtocol {
         )
         
         Tapjoy.setDebugEnabled(true)
+
+        let tjPrivacyPolicy = Tapjoy.getPrivacyPolicy()
+        tjPrivacyPolicy.subjectToGDPRStatus = .false
+        tjPrivacyPolicy.userConsentStatus = .true
+        tjPrivacyPolicy.belowConsentAgeStatus = .false
+        tjPrivacyPolicy.usPrivacy = "1---"
+        
         Tapjoy.connect("mbAVpNXZSzC0d9I0lTHXawEBBFpgzq63v8WLQZDHxEUgwXPlk5bvyAXjK4Sl")
     }
     
