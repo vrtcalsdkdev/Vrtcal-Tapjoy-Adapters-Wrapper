@@ -46,9 +46,9 @@ class VrtcalTapjoyAdaptersWrapper: NSObject, AdapterWrapperProtocol {
         Tapjoy.connect("mbAVpNXZSzC0d9I0lTHXawEBBFpgzq63v8WLQZDHxEUgwXPlk5bvyAXjK4Sl")
     }
     
-    func handle(vrtcalAsSecondaryConfig: VrtcalAsSecondaryConfig) {
+    func handle(adTechConfig: AdTechConfig) {
         
-        switch vrtcalAsSecondaryConfig.placementType {
+        switch adTechConfig.placementType {
                 
             case .banner:
                 appLogger.log("Tapjoy does not support banners")
@@ -57,7 +57,7 @@ class VrtcalTapjoyAdaptersWrapper: NSObject, AdapterWrapperProtocol {
                 appLogger.log("Tapjoy Interstitial")
                 
                 guard let tjPlacement = TJPlacement(
-                    name: vrtcalAsSecondaryConfig.adUnitId,
+                    name: adTechConfig.adUnitId,
                     delegate: self
                 ) else {
                     sdkEventsLogger.log("No placement")
