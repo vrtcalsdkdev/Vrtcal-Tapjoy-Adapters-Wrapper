@@ -43,7 +43,10 @@ class VrtcalTapjoyAdaptersWrapper: NSObject, AdapterWrapperProtocol {
         tjPrivacyPolicy.belowConsentAgeStatus = .false
         tjPrivacyPolicy.usPrivacy = "1---"
         
+        // Twitmore's SDK Key
+        // https://ltv.tapjoy.com/s/627e825a-40ef-8000-8000-bedff60013c5/setting#app
         Tapjoy.connect("mbAVpNXZSzC0d9I0lTHXawEBBFpgzq63v8WLQZDHxEUgwXPlk5bvyAXjK4Sl")
+        Tapjoy.setDebugEnabled(true)
     }
     
     func handle(adTechConfig: AdTechConfig) {
@@ -95,7 +98,7 @@ extension VrtcalTapjoyAdaptersWrapper {
     }
 
     @objc func tjcConnectFail(notif: NSNotification) {
-        sdkEventsLogger.log("Tapjoy initializzation failed")
+        sdkEventsLogger.log("Tapjoy initialization failed: \(notif)")
     }
 }
 
