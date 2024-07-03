@@ -21,6 +21,7 @@ class VrtcalTapjoyAdaptersWrapper: NSObject, AdapterWrapperProtocol {
     }
     
     func initializeSdk() {
+        NotificationCenter.default.removeObserver(self)
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(tjcConnectSuccess(notif:)),
@@ -46,7 +47,6 @@ class VrtcalTapjoyAdaptersWrapper: NSObject, AdapterWrapperProtocol {
         // Twitmore's SDK Key
         // https://ltv.tapjoy.com/s/627e825a-40ef-8000-8000-bedff60013c5/setting#app
         Tapjoy.connect("mbAVpNXZSzC0d9I0lTHXawEBBFpgzq63v8WLQZDHxEUgwXPlk5bvyAXjK4Sl")
-        Tapjoy.setDebugEnabled(true)
     }
     
     func handle(adTechConfig: AdTechConfig) {
