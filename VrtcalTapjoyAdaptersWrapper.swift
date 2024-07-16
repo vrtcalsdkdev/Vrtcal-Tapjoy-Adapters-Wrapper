@@ -66,7 +66,6 @@ class VrtcalTapjoyAdaptersWrapper: NSObject, AdapterWrapperProtocol {
                     sdkEventsLogger.log("No placement")
                     return
                 }
-                tjPlacement.videoDelegate = self
                 tjPlacement.requestContent()
                 self.tjPlacement = tjPlacement
                 
@@ -134,20 +133,5 @@ extension VrtcalTapjoyAdaptersWrapper: TJPlacementDelegate {
 
     func placement(_ placement: TJPlacement, didRequestReward request: TJActionRequest?, itemId: String?, quantity: Int32) {
         sdkEventsLogger.log("Tapjoy placement didRequestReward")
-    }
-}
-
-
-extension VrtcalTapjoyAdaptersWrapper: TJPlacementVideoDelegate {
-    func videoDidStart(_ placement: TJPlacement) {
-        appLogger.log()
-    }
-    
-    func videoDidComplete(_ placement: TJPlacement) {
-        appLogger.log()
-    }
-    
-    func videoDidFail(_ placement: TJPlacement, error errorMsg: String?) {
-        appLogger.log("error: \(String(describing: errorMsg))")
     }
 }
