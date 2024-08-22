@@ -36,8 +36,10 @@ class VrtcalTapjoyAdaptersWrapper: NSObject, AdapterWrapperProtocol {
             object: nil
         )
         
+        // Enable Debug
         Tapjoy.setDebugEnabled(true)
 
+        // Edit the global privacy singleton
         let tjPrivacyPolicy = Tapjoy.getPrivacyPolicy()
         tjPrivacyPolicy.subjectToGDPRStatus = .false
         tjPrivacyPolicy.userConsentStatus = .true
